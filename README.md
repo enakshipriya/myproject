@@ -58,6 +58,7 @@
 
 ###### To check if value exists corresponding to a key on a blockchain
 > zebicli query kvstore get-key-value howrah
+
 ->["bridge"]
 
 ------------------------
