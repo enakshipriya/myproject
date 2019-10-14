@@ -36,7 +36,7 @@
 > zebicli config trust-node true
 
 ###### Create a genesis transaction
-> zebid gentx --name `<account-holder-name>` --amount=`<amount>zebi` --commission-rate 0.01 --commission-max-rate 0.05 --commission-max-change-rate 0.005 --min-self-delegation `<amount>`
+> zebid gentx --name `<account-holder-name>` --amount=`<amount>zebi` --commission-rate `0.01` --commission-max-rate `0.05` --commission-max-change-rate `0.005` --min-self-delegation `<amount>`
 
 ###### After generation of genesis transcation, input the gentx into the genesis file, so that the chain is aware of the validators
 > zebid collect-gentxs
@@ -45,7 +45,7 @@
 > zebid validate-genesis
 
 ###### To start the client blockchain
-> zebid start --minimum-gas-prices=1400.0zebi 1>>ZPBLog.$(date +%b%d-%H)  2>&1  &
+> zebid start --minimum-gas-prices=`1400.0zebi` 1>>ZPBLog.$(date +%b%d-%H)  2>&1  &
 
 ###### To check the accounts to ensure they have funds
 > zebicli query account $(zebicli keys show `<account-holder-name>` -a)
@@ -54,7 +54,7 @@
 > zebicli tx kvstore post-key-value howrah bridge --from `<account-holder-name>` --chain-id `<chain-name>`
 
 ###### To start rest-server
-> zebicli rest-server cert.pem key.pem --chain-id `<chain-name>` --trust-node --laddr tcp://0.0.0.0:1317
+> zebicli rest-server `<cert-file>` `<key-file>` --chain-id `<chain-name>` --trust-node --laddr tcp://0.0.0.0:1317
 
 ###### To check if value exists corresponding to a key on a blockchain
 > zebicli query kvstore get-key-value howrah
@@ -103,16 +103,16 @@
 #### Commands to add a validator node. Should be done only after adding the node as a peer node.
 ---------------------------------------------------------------------------------------------
 > zebicli tx staking create-validator \
-  --amount=1000000000000zebi \
+  --amount=`<amount>zebi` \
   --pubkey=$(zebid tendermint show-validator) \
   --moniker=`<node-name>` \
   --chain-id=`<chain-name>` \
-  --commission-rate="0.10" \
-  --commission-max-rate="0.20" \
-  --commission-max-change-rate="0.01" \
-  --min-self-delegation="1" \
+  --commission-rate=`"0.10"` \
+  --commission-max-rate=`"0.20"` \
+  --commission-max-change-rate=`"0.01"` \
+  --min-self-delegation=`"1"` \
   --gas="auto" \
-  --gas-prices="0.025zebi" \
+  --gas-prices=`"0.025zebi"` \
   --from=`<account-holder-name>`
 
 **Use "--help" or "-h" with zebid and zebicli for more information about a command.**
