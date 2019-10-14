@@ -6,7 +6,7 @@
 > zebid unsafe-reset-all
 
 ###### To query a transaction hash
-> zebicli query tx <hash>
+> zebicli query tx `<hash>`
 
 ###### To check list of existing accounts
 > zebicli keys list
@@ -19,10 +19,10 @@
 ----------------------------------
 
 ###### Initialize configuration files and genesis file
-> zebid init <moniker> --chain-id <chain-name>
+> zebid init `<moniker>` --chain-id `<chain-name>`
 
 ###### To add a key. Copy the `Address` output here and save it for later use
-> zebicli keys add <account-holder-name>
+> zebicli keys add `<account-holder-name>`
 
 ###### Add account, with coins to the genesis file. This is the genesis account. It can only be added before the chain is started. Once chain starts, then funds can only be transferred from one account to another. We can have multiple genesis accounts.
 > zebid add-genesis-account $(zebicli keys show <account-holder-name> -a) 10000000000000000zebi
@@ -116,4 +116,3 @@
   --from=<account-holder-name>
 
 **Use "--help" or "-h" with zebid and zebicli for more information about a command.**
-
