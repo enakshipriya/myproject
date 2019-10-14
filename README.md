@@ -21,22 +21,22 @@
 ###### Initialize configuration files and genesis file
 > zebid init `<moniker>` --chain-id `<chain-name>`
 
-###### To add a key. Copy the `Address` output here and save it for later use
+###### To add a key. Copy the Address output and save it for later use
 > zebicli keys add `<account-holder-name>`
 
 ###### Add account, with coins to the genesis file. This is the genesis account. It can only be added before the chain is started. Once chain starts, then funds can only be transferred from one account to another. We can have multiple genesis accounts.
-> zebid add-genesis-account $(zebicli keys show <account-holder-name> -a) 10000000000000000zebi
+> zebid add-genesis-account $(zebicli keys show `<account-holder-name>` -a) `<amount>zebi`
 
-**The value required should be multiplied to the power to 10^8.**
+**The value required should be multiplied to the power to 10^8 for decimal representation.**
 
 ###### Configure your CLI to eliminate need for chain-id flag
-> zebicli config chain-id <chain-name>
+> zebicli config chain-id `<chain-name>`
 > zebicli config output json
 > zebicli config indent true
 > zebicli config trust-node true
 
 ###### Create a genesis transaction
-> zebid gentx --name <account-holder-name> --amount=2000000000000000zebi --commission-rate 0.01 --commission-max-rate 0.05 --commission-max-change-rate 0.005 --min-self-delegation 100000000
+> zebid gentx --name `<account-holder-name>` --amount=`<amount>zebi` --commission-rate 0.01 --commission-max-rate 0.05 --commission-max-change-rate 0.005 --min-self-delegation `<amount>`
 
 ###### After generation of genesis transcation, input the gentx into the genesis file, so that the chain is aware of the validators
 > zebid collect-gentxs
@@ -48,13 +48,13 @@
 > zebid start --minimum-gas-prices=1400.0zebi 1>>ZPBLog.$(date +%b%d-%H)  2>&1  &
 
 ###### To check the accounts to ensure they have funds
-> zebicli query account $(zebicli keys show <account-holder-name> -a)
+> zebicli query account $(zebicli keys show `<account-holder-name>` -a)
 
 ###### To make a transaction of post-key-value type
-> zebicli tx kvstore post-key-value howrah bridge --from <account-holder-name> --chain-id <chain-name>
+> zebicli tx kvstore post-key-value howrah bridge --from `<account-holder-name>` --chain-id `<chain-name>`
 
 ###### To start rest-server
-> zebicli rest-server cert.pem key.pem --chain-id <chain-name> --trust-node --laddr tcp://0.0.0.0:1317
+> zebicli rest-server cert.pem key.pem --chain-id `<chain-name>` --trust-node --laddr tcp://0.0.0.0:1317
 
 ###### To check if value exists corresponding to a key on a blockchain
 > zebicli query kvstore get-key-value howrah
@@ -64,13 +64,13 @@
 #### Some rest API commands
 ------------------------
 ###### Rest api command to search a key on blockchain
-> curl -s http://localhost:1317/kvstore/key/<key>
+> curl -s 'http://localhost:1317/kvstore/key/<key>'
 
 ###### Rest api command to search a data on blockchain
-> curl -s http://localhost:1317/kvstore/data/<data>
+> curl -s 'http://localhost:1317/kvstore/data/<data>'
 
 ###### Rest api command to query a transaction hash on blockchain
-> curl -s http://localhost:1317/txs/<hash>
+> curl -s 'http://localhost:1317/txs/<hash>'
 
 ###### Rest api command to query rewards
 1. Delegator rewards
@@ -105,14 +105,14 @@
 > zebicli tx staking create-validator \
   --amount=1000000000000zebi \
   --pubkey=$(zebid tendermint show-validator) \
-  --moniker=<node-name> \
-  --chain-id=<chain-name> \
+  --moniker=`<node-name>` \
+  --chain-id=`<chain-name>` \
   --commission-rate="0.10" \
   --commission-max-rate="0.20" \
   --commission-max-change-rate="0.01" \
   --min-self-delegation="1" \
   --gas="auto" \
   --gas-prices="0.025zebi" \
-  --from=<account-holder-name>
+  --from=`<account-holder-name>`
 
 **Use "--help" or "-h" with zebid and zebicli for more information about a command.**
