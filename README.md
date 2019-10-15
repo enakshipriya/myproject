@@ -1,6 +1,6 @@
--------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------
 #### Basic functionalities related to zebid and zebicli modules(Frequently used commands)
--------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------
 
 ###### To reset a chains data and genesis file
 > zebid unsafe-reset-all
@@ -11,12 +11,9 @@
 ###### To check list of existing accounts
 > zebicli keys list
 
-###### To start a rest server
-> zebicli rest-server cert.pem key.pem --chain-id <chain-name> --trust-node --laddr tcp://0.0.0.0:1317
-
-----------------------------------
-#### Steps to run keytore application
-----------------------------------
+----------------------------------------------
+#### Steps to run key value store application
+----------------------------------------------
 
 ###### Initialize configuration files and genesis file
 > zebid init `<moniker>` --chain-id `<chain-name>`
@@ -54,55 +51,55 @@
 > zebicli tx kvstore post-key-value howrah bridge --from `<account-holder-name>` --chain-id `<chain-name>`
 
 ###### To start rest-server
-> zebicli rest-server `<cert-file>` `<key-file>` --chain-id `<chain-name>` --trust-node --laddr tcp://0.0.0.0:1317
+> zebicli rest-server `<cert-file>` `<key-file>` --chain-id `<chain-name>` --trust-node --laddr `tcp://0.0.0.0:1317`
 
 ###### To check if value exists corresponding to a key on a blockchain
 > zebicli query kvstore get-key-value howrah
 
 ->["bridge"]
 
-------------------------
+----------------------------
 #### Some rest API commands
-------------------------
+----------------------------
 ###### Rest api command to search a key on blockchain
-> curl -s 'http://localhost:1317/kvstore/key/<key>'
+> curl -s 'http://localhost:1317/kvstore/key/`<key>`'
 
 ###### Rest api command to search a data on blockchain
-> curl -s 'http://localhost:1317/kvstore/data/<data>'
+> curl -s 'http://localhost:1317/kvstore/data/`<data>`'
 
 ###### Rest api command to query a transaction hash on blockchain
-> curl -s 'http://localhost:1317/txs/<hash>'
+> curl -s 'http://localhost:1317/txs/`<hash>`'
 
 ###### Rest api command to query rewards
 1. Delegator rewards
-> curl -X GET "http://localhost:1317/distribution/delegators/<account_address>/rewards" -H "accept: application/json"
+> curl -X GET "http://localhost:1317/distribution/delegators/`<account_address>`/rewards" -H "accept: application/json"
 
 2. Validator rewards
-> curl -X GET "http://localhost:1317/distribution/validators/<validator_address>/rewards" -H "accept: application/json"
+> curl -X GET "http://localhost:1317/distribution/validators/`<validator_address>`/rewards" -H "accept: application/json"
 
 ###### Rest api command to query liquid balances
-> curl -X GET "http://localhost:1317/bank/balances/<account_address>" -H "accept: application/json"
+> curl -X GET "http://localhost:1317/bank/balances/`<account_address>`" -H "accept: application/json"
 
 ###### Rest api command to query account details
-> curl -X GET "http://localhost:1317/auth/accounts/<account_address>" -H "accept: application/json"
+> curl -X GET "http://localhost:1317/auth/accounts/`<account_address>`" -H "accept: application/json"
 
 ###### Rest api command to query validators
 > curl -X GET "http://localhost:1317/staking/validators" -H "accept: application/json"
 
 ###### Rest api command to query my delegations
 1. To get all delegations from a validator
-> curl -X GET "http://localhost:1317/staking/validators/<validator_address>/delegations" -H "accept: application/json"
+> curl -X GET "http://localhost:1317/staking/validators/`<validator_address>`/delegations" -H "accept: application/json"
 
 2. To get all delegations from a delegator
-> curl -X GET "http://localhost:1317/staking/delegators/<account_address>/delegations" -H "accept: application/json"
+> curl -X GET "http://localhost:1317/staking/delegators/`<account_address>`/delegations" -H "accept: application/json"
 
 ###### Rest api command to query all transactions from a particular account
-> curl -X GET "http://localhost:1317/txs?sender=<account_address>" -H "accept: application/json"
-> curl -X GET "http://localhost:1317/txs?recipient=<account_address>" -H "accept: application/json"
+> curl -X GET "http://localhost:1317/txs?sender=`<account_address>`" -H "accept: application/json"
+> curl -X GET "http://localhost:1317/txs?recipient=`<account_address>`" -H "accept: application/json"
 
----------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
 #### Commands to add a validator node. Should be done only after adding the node as a peer node.
----------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
 > zebicli tx staking create-validator \
   --amount=`<amount>zebi` \
   --pubkey=$(zebid tendermint show-validator) \
