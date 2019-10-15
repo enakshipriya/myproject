@@ -62,40 +62,40 @@
 #### Some rest API commands
 ----------------------------
 ###### Rest api command to search a key on blockchain
-> curl -s 'http://localhost:1317/kvstore/key/`<key>`'
+> curl -s "http://localhost:1317/kvstore/key/<key>"
 
 ###### Rest api command to search a data on blockchain
-> curl -s 'http://localhost:1317/kvstore/data/`<data>`'
+> curl -s "http://localhost:1317/kvstore/data/<data>"
 
 ###### Rest api command to query a transaction hash on blockchain
-> curl -s 'http://localhost:1317/txs/`<hash>`'
+> curl -s "http://localhost:1317/txs/<hash>"
 
 ###### Rest api command to query rewards
 1. Delegator rewards
-> curl -X GET "http://localhost:1317/distribution/delegators/`<account_address>`/rewards" -H "accept: application/json"
+> curl -X GET "http://localhost:1317/distribution/delegators/<account_address>/rewards" -H "accept: application/json"
 
 2. Validator rewards
-> curl -X GET "http://localhost:1317/distribution/validators/`<validator_address>`/rewards" -H "accept: application/json"
+> curl -X GET "http://localhost:1317/distribution/validators/<validator_address>/rewards" -H "accept: application/json"
 
 ###### Rest api command to query liquid balances
-> curl -X GET "http://localhost:1317/bank/balances/`<account_address>`" -H "accept: application/json"
+> curl -X GET "http://localhost:1317/bank/balances/<account_address>" -H "accept: application/json"
 
 ###### Rest api command to query account details
-> curl -X GET "http://localhost:1317/auth/accounts/`<account_address>`" -H "accept: application/json"
+> curl -X GET "http://localhost:1317/auth/accounts/<account_address>" -H "accept: application/json"
 
 ###### Rest api command to query validators
 > curl -X GET "http://localhost:1317/staking/validators" -H "accept: application/json"
 
 ###### Rest api command to query my delegations
 1. To get all delegations from a validator
-> curl -X GET "http://localhost:1317/staking/validators/`<validator_address>`/delegations" -H "accept: application/json"
+> curl -X GET "http://localhost:1317/staking/validators/<validator_address>/delegations" -H "accept: application/json"
 
 2. To get all delegations from a delegator
-> curl -X GET "http://localhost:1317/staking/delegators/`<account_address>`/delegations" -H "accept: application/json"
+> curl -X GET "http://localhost:1317/staking/delegators/<account_address>/delegations" -H "accept: application/json"
 
 ###### Rest api command to query all transactions from a particular account
-> curl -X GET "http://localhost:1317/txs?sender=`<account_address>`" -H "accept: application/json"
-> curl -X GET "http://localhost:1317/txs?recipient=`<account_address>`" -H "accept: application/json"
+> curl -X GET "http://localhost:1317/txs?sender=<account_address>" -H "accept: application/json"
+> curl -X GET "http://localhost:1317/txs?recipient=<account_address>" -H "accept: application/json"
 
 --------------------------------------------------------------------------------------------------
 #### Commands to add a validator node. Should be done only after adding the node as a peer node.
