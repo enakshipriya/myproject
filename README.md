@@ -62,7 +62,7 @@
 #### Some rest API commands
 ----------------------------
 ###### Rest api command to search a key on blockchain
-> curl -s "http://localhost:1317/kvstore/key/<key>"
+> curl -s "http://localhost:1317/kvstore/key/\<key>"
 
 ###### Rest api command to search a data on blockchain
 > curl -s "http://localhost:1317/kvstore/data/<data>"
