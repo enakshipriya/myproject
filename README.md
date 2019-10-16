@@ -65,10 +65,10 @@
 > curl -s "http://localhost:1317/kvstore/key/<key&gt;"
 
 ###### Rest api command to search a data on blockchain
-> curl -s "http://localhost:1317/kvstore/data/<data>"
+> curl -s "http://localhost:1317/kvstore/data/<data&gt;"
 
 ###### Rest api command to query a transaction hash on blockchain
-> curl -s "http://localhost:1317/txs/<hash>/"
+> curl -s "http://localhost:1317/txs/<hash&gt;"
 
 ###### Rest api command to query rewards
 1. Delegator rewards
